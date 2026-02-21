@@ -8,18 +8,16 @@
     packages = with pkgs; [
       google-chrome
       inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-      # GNOME Extensions and Manager
-      gnome-extension-manager
-      gnomeExtensions.tiling-shell
     ];
   };
 
   # Enable nix-ld for user's needs (like Zed language servers)
   programs.nix-ld.enable = true;
 
-  # User specific system packages
+  # System-wide packages including GNOME extensions
   environment.systemPackages = with pkgs; [
     git
+    gnome-extension-manager
+    gnomeExtensions.tiling-shell
   ];
 }
