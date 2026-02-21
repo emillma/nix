@@ -25,4 +25,13 @@
     layout = "us";
     variant = "";
   };
+
+  systemd.tmpfiles.rules = [
+    # Remove existing file if present
+    "r /run/gdm/.config/monitors.xml - - - - -"
+    # Copy the GDM-specific monitors.xml (use C for copy, not symlink)
+    "C /run/gdm/.config/monitors.xml - - - - ${./monitors-gdm.xml}"
+    # Recursively set ownership on the .config dir to gdm:gdm
+    "Z /run/gdm/.config - gdm gdm - -"
+  ];
 }

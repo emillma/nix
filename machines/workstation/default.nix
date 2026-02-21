@@ -9,7 +9,6 @@
       ../../modules/system/network.nix
       ../../modules/system/audio.nix
       ../../modules/system/display.nix
-      ../../modules/system/display-layout.nix
       ../../modules/hardware/nvidia.nix
       ../../modules/hardware/voyager.nix
       ../../modules/users/emil.nix
