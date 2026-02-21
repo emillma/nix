@@ -23,13 +23,4 @@
 
   # Set SSH_AUTH_SOCK to use 1Password SSH agent
   environment.variables.SSH_AUTH_SOCK = "/home/emil/.1password/agent.sock";
-
-  # System-wide packages including GNOME extensions
-  environment.systemPackages = with pkgs; [
-    git
-    gnome-extension-manager
-    gnome-tweaks
-    gnomeExtensions.tiling-shell
-    gnomeExtensions.just-perfection
-  ];
 }
