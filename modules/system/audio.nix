@@ -9,5 +9,21 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    # High-quality Bluetooth audio settings
+    wireplumber.extraConfig = {
+      "10-bluetooth-policy" = {
+        "wireplumber.settings" = {
+          "bluetooth.autoswitch-to-headset-profile" = false;
+        };
+      };
+      "11-bluetooth-codecs" = {
+        "monitor.bluez.properties" = {
+          "bluez5.enable-sbc-xq" = true;
+          "bluez5.enable-msbc" = true;
+          "bluez5.enable-hw-volume" = true;
+          "bluez5.roles" = [ "a2dp_sink" "a2dp_source" "bap_sink" "bap_source" "hfp_hf" "hfp_ag" ];
+        };
+      };
+    };
   };
 }
