@@ -14,6 +14,9 @@
       ../../modules/users/emil.nix
     ];
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   networking.hostName = "workstation";
 
   # This value determines the NixOS release from which the default
