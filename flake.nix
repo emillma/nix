@@ -7,11 +7,11 @@
   };
 
   outputs = { self, nixpkgs, zed, ... }@inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.workstation = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
-        ./configuration.nix
+        ./machines/workstation/default.nix
       ];
     };
   };
