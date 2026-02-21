@@ -18,6 +18,8 @@
   environment.systemPackages = with pkgs; [
     git
     gnome-extension-manager
+    gnome-tweaks
     gnomeExtensions.tiling-shell
+    gnomeExtensions.just-perfection
   ];
 }
