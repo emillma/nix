@@ -1,16 +1,31 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   users.users.emil = {
     isNormalUser = true;
     description = "emil";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       google-chrome
       spotify
       inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.default
       texlab
       texlive.combined.scheme-full
+      zathura
+      kdePackages.okular
+      python3
+      jq
+      nil
+      nixd
+      nixfmt-rfc-style
     ];
   };
 

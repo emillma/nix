@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Enable the X11 windowing system.
+  # This is technically redundant since plasma6.enable already sets this to true.
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
