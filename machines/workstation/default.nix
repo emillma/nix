@@ -12,6 +12,7 @@
       ../../modules/hardware/nvidia.nix
       ../../modules/hardware/voyager.nix
       ../../modules/users/emil.nix
+      ../../modules/feel/catppuccin.nix
     ];
 
   hardware.bluetooth = {

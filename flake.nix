@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     zed.url = "github:zed-industries/zed";
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs = { self, nixpkgs, zed, ... }@inputs: {
@@ -11,6 +12,7 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
       modules = [
+        inputs.catppuccin.nixosModules.catppuccin
         ./machines/workstation/default.nix
       ];
     };

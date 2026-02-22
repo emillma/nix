@@ -7,7 +7,10 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       google-chrome
+      spotify
       inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.default
+      texlab
+      texlive.combined.scheme-full
     ];
   };
 

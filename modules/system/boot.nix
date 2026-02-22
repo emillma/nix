@@ -10,6 +10,7 @@
     "btusb.enable_autosuspend=0"
     "rtw89_pci.disable_aspm_l1=y"
     "rtw89_pci.disable_aspm_l1ss=y"
+    "rtw89_pci.disable_clkreq=y"
     "rtw89_core.disable_ps_mode=y"
   ];
 }
