@@ -3,18 +3,20 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    zed.url = "github:zed-industries/zed";
     catppuccin.url = "github:catppuccin/nix";
+    bambu-flatpak.url = "path:./bambu-flatpak";
   };
 
-  outputs = { self, nixpkgs, zed, ... }@inputs: {
-    nixosConfigurations.workstation = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        inputs.catppuccin.nixosModules.catppuccin
-        ./machines/workstation/default.nix
-      ];
+  outputs =
+    { nixpkgs, ... }@inputs:
+    {
+      nixosConfigurations.workstation = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          inputs.catppuccin.nixosModules.catppuccin
+          inputs.bambu-flatpak.nixosModules.default
+          ./machines/workstation/default.nix
+        ];
+      };
     };
-  };
 }

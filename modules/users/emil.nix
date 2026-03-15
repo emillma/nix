@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   users.users.emil = {
@@ -12,11 +7,13 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "input"
+      "uinput"
     ];
     packages = with pkgs; [
       google-chrome
       spotify
-      inputs.zed.packages.${pkgs.stdenv.hostPlatform.system}.default
+      zed-editor
       texlab
       texlive.combined.scheme-full
       zathura
@@ -26,19 +23,46 @@
       nil
       nixd
       nixfmt-rfc-style
+      uv
+      rustup
+      pixi
+      xdg-utils
+      lmstudio
     ];
   };
 
-  # Enable nix-ld for user's needs (like Zed language servers)
+  # Minimal nix-ld for unpatched dynamic binaries (LSPs, etc.)
   programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    openssl
+    icu
+    libxml2
+    glib
+  ];
 
-  # Enable 1Password and 1Password-GUI with Polkit support
+  environment.sessionVariables = {
+    WEBKIT_DISABLE_COMPOSITING_MODE = "1";
+  };
+
+  # 1Password & Auth
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
     polkitPolicyOwners = [ "emil" ];
   };
 
-  # Set SSH_AUTH_SOCK to use 1Password SSH agent
   environment.variables.SSH_AUTH_SOCK = "/home/emil/.1password/agent.sock";
+
+  # Global Git Identity
+  programs.git = {
+    enable = true;
+    config = {
+      user = {
+        name = "Emil Martens";
+        email = "emil.martens@gmail.com";
+      };
+    };
+  };
 }

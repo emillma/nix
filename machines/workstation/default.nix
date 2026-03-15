@@ -1,19 +1,18 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ../../modules/system/boot.nix
-      ../../modules/system/common.nix
-      ../../modules/system/network.nix
-      ../../modules/system/audio.nix
-      ../../modules/system/display.nix
-      ../../modules/hardware/nvidia.nix
-      ../../modules/hardware/voyager.nix
-      ../../modules/users/emil.nix
-      ../../modules/feel/catppuccin.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ../../modules/system/boot.nix
+    ../../modules/system/common.nix
+    ../../modules/system/network.nix
+    ../../modules/system/audio.nix
+    ../../modules/system/display.nix
+    ../../modules/hardware/nvidia.nix
+    ../../modules/hardware/voyager.nix
+    ../../modules/users/emil.nix
+    ../../modules/feel/catppuccin.nix
+  ];
 
   hardware.bluetooth = {
     enable = true;

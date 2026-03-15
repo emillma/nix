@@ -1,13 +1,24 @@
 { config, pkgs, ... }:
 
 {
+  # Pin Vulkan ICD to NVIDIA only.
+  # Without this, the Vulkan loader exposes all Mesa ICDs (radeon, intel, nouveau, etc.)
+  # alongside the NVIDIA one. wgpu (used by Zed and other GPU apps) can pick up
+  # libvulkan_radeon.so, fail to configure a surface (no AMD GPU present), and panic.
+  environment.variables.VK_ICD_FILENAMES =
+    "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      nvidia-vaapi-driver
+    ];
   };
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -17,7 +28,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
