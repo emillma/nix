@@ -14,6 +14,12 @@
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+
+    # Tell Electron/Chromium apps to use Wayland natively (Hyprland Nvidia guide)
+    NIXOS_OZONE_WL = "1";
+
+    # Use direct backend for VA-API hardware video acceleration with Nvidia
+    NVD_BACKEND = "direct";
   };
 
   environment.systemPackages = with pkgs; [

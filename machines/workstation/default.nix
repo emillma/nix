@@ -26,6 +26,9 @@
     };
   };
 
+  # Prevent CPU frequency scaling latency spikes that cause Bluetooth mouse lag
+  powerManagement.cpuFreqGovernor = "performance";
+
   networking.hostName = "workstation";
 
   # This value determines the NixOS release from which the default

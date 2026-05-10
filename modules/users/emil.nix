@@ -40,10 +40,23 @@
     icu
     libxml2
     glib
+    stdenv.cc.cc
+    zlib
+    fuse3
+    icu
+    nss
+    openssl
+    curl
+    expat
+    # Add hardware acceleration libs if using GPU
+    libglvnd
+    vulkan-loader
   ];
 
   environment.sessionVariables = {
     WEBKIT_DISABLE_COMPOSITING_MODE = "1";
+    # Force Zed to use Vulkan (NVIDIA + Wayland requires this)
+    GPUI_BACKEND = "Vulkan";
   };
 
   # 1Password & Auth

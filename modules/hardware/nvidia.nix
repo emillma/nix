@@ -5,8 +5,7 @@
   # Without this, the Vulkan loader exposes all Mesa ICDs (radeon, intel, nouveau, etc.)
   # alongside the NVIDIA one. wgpu (used by Zed and other GPU apps) can pick up
   # libvulkan_radeon.so, fail to configure a surface (no AMD GPU present), and panic.
-  environment.variables.VK_ICD_FILENAMES =
-    "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+  environment.variables.VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json";
 
   # Enable OpenGL
   hardware.graphics = {

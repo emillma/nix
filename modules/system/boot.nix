@@ -12,5 +12,7 @@
     "rtw89_pci.disable_aspm_l1ss=y"
     "rtw89_pci.disable_clkreq=y"
     "rtw89_core.disable_ps_mode=y"
+    # Preserve VRAM across suspend/resume (Hyprland Nvidia guide)
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 }

@@ -21,14 +21,10 @@
   programs.firefox.enable = true;
   programs.dconf.enable = true;
   programs.droidcam.enable = true;
+  # ComfyUI - Node-based Stable Diffusion UI (via comfyui-nix NixOS module)
+  services.comfyui.enable = true;
 
-  # Fonts
-  fonts.packages = with pkgs; [
-    fira-code
-    fira-code-symbols
-  ];
-
-  # List packages installed in system profile.
+  # Add comfyui-cuda to system packages from overlay
   environment.systemPackages = with pkgs; [
     git
     vim
@@ -37,6 +33,16 @@
     gcc
     cudaPackages_13.cudatoolkit
     solaar
+    htop
+    nvtopPackages.nvidia
+    comfyui-cuda
+    vulkan-tools
+  ];
+
+  # Fonts
+  fonts.packages = with pkgs; [
+    fira-code
+    fira-code-symbols
   ];
 
   # Logitech & Solaar configuration
