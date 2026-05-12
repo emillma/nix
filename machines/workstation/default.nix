@@ -19,7 +19,6 @@
     powerOnBoot = true;
     settings = {
       General = {
-        Experimental = true;
         FastConnectable = true;
         ControllerMode = "dual";
       };
